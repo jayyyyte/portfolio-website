@@ -1,0 +1,72 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { projects } from "../data/projects";
+---
+
+<BaseLayout title="Projects | Data Engineer Portfolio">
+  <section class="border-b border-line bg-surface">
+    <div class="mx-auto max-w-6xl px-5 py-12 lg:px-8">
+      <p class="text-sm font-semibold uppercase tracking-normal text-accent">Projects</p>
+      <h1 class="mt-2 text-3xl font-semibold text-ink sm:text-4xl">Data engineering project portfolio</h1>
+      <p class="mt-4 max-w-3xl leading-7 text-muted">
+        Each project is structured around the problem, data sources, pipeline design, data model, quality checks, and outcome.
+        Draft content is marked until real project repositories and measurements are added.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-5 py-12 lg:px-8">
+    <div class="space-y-6">
+      {projects.map((project) => (
+        <article class="border border-line bg-white p-6">
+          <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <span class="text-xs font-semibold uppercase tracking-normal text-muted">{project.status}</span>
+              <h2 class="mt-2 text-2xl font-semibold text-ink">{project.name}</h2>
+              <p class="mt-3 max-w-3xl leading-7 text-muted">{project.summary}</p>
+            </div>
+            {project.caseStudy && (
+              <a class="shrink-0 border border-accent px-4 py-2 text-sm font-semibold text-accent hover:bg-accent hover:text-white" href={project.caseStudy}>
+                Case Study
+              </a>
+            )}
+          </div>
+
+          <div class="mt-6 grid gap-5 lg:grid-cols-3">
+            <section>
+              <h3 class="text-sm font-semibold uppercase tracking-normal text-ink">Problem</h3>
+              <p class="mt-2 text-sm leading-6 text-muted">{project.problem}</p>
+            </section>
+            <section>
+              <h3 class="text-sm font-semibold uppercase tracking-normal text-ink">Pipeline</h3>
+              <ul class="mt-2 list-disc space-y-1 pl-5 text-sm leading-6 text-muted">
+                {project.pipeline.map((step) => <li>{step}</li>)}
+              </ul>
+            </section>
+            <section>
+              <h3 class="text-sm font-semibold uppercase tracking-normal text-ink">Data Quality</h3>
+              <ul class="mt-2 list-disc space-y-1 pl-5 text-sm leading-6 text-muted">
+                {project.dataQuality.map((check) => <li>{check}</li>)}
+              </ul>
+            </section>
+          </div>
+
+          <div class="mt-6 grid gap-5 border-t border-line pt-5 md:grid-cols-3">
+            <div>
+              <h3 class="text-sm font-semibold text-ink">Data Sources</h3>
+              <p class="mt-2 text-sm leading-6 text-muted">{project.dataSources.join(", ")}</p>
+            </div>
+            <div>
+              <h3 class="text-sm font-semibold text-ink">Tech Stack</h3>
+              <p class="mt-2 text-sm leading-6 text-muted">{project.techStack.join(", ")}</p>
+            </div>
+            <div>
+              <h3 class="text-sm font-semibold text-ink">Data Model</h3>
+              <p class="mt-2 text-sm leading-6 text-muted">{project.dataModel.join(", ")}</p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

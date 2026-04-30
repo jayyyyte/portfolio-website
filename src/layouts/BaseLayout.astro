@@ -1,0 +1,71 @@
+---
+import "../styles/global.css";
+import { profile } from "../data/profile";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${profile.name} | Data Engineer Portfolio`,
+  description = profile.hero.subheadline,
+} = Astro.props;
+
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/projects/", label: "Projects" },
+  { href: "/case-studies/", label: "Case Studies" },
+  { href: "/about/", label: "About" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-white text-ink antialiased">
+    <header class="border-b border-line bg-white">
+      <nav class="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-5 sm:flex-row sm:items-center sm:justify-between lg:px-8" aria-label="Main navigation">
+        <a href="/" class="text-base font-semibold tracking-normal text-ink">{profile.name}</a>
+        <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium text-muted">
+          {navItems.map((item) => (
+            <a class="hover:text-accent" href={item.href}>{item.label}</a>
+          ))}
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="border-t border-line bg-surface">
+      <div class="mx-auto grid max-w-6xl gap-8 px-5 py-8 lg:grid-cols-[1fr_1.2fr] lg:px-8">
+        <p class="text-sm text-muted">&copy; {new Date().getFullYear()} {profile.name}. Data engineering portfolio.</p>
+
+        <section aria-labelledby="footer-contact">
+          <h2 id="footer-contact" class="text-xl font-semibold text-ink">Contact</h2>
+          <div class="mt-5 grid gap-4 text-sm sm:grid-cols-3">
+            <p>
+              <span class="block font-semibold text-ink">Email</span>
+              <a class="mt-1 inline-block break-words text-accent hover:underline" href={`mailto:${profile.email}`}>{profile.email}</a>
+            </p>
+            <p>
+              <span class="block font-semibold text-ink">GitHub</span>
+              <a class="mt-1 inline-block break-words text-accent hover:underline" href={profile.github}>{profile.github}</a>
+            </p>
+            <p>
+              <span class="block font-semibold text-ink">LinkedIn</span>
+              <a class="mt-1 inline-block break-words text-accent hover:underline" href={profile.linkedin}>{profile.linkedin}</a>
+            </p>
+          </div>
+        </section>
+      </div>
+    </footer>
+  </body>
+</html>

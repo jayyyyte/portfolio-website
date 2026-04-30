@@ -1,0 +1,68 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("case-studies");
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={`${entry.data.title} | Case Study`}>
+  <article class="mx-auto max-w-3xl px-5 py-12 lg:px-0">
+    <a class="text-sm font-semibold text-accent hover:underline" href="/case-studies/">Back to case studies</a>
+    <header class="mt-6 border-b border-line pb-8">
+      <span class="text-xs font-semibold uppercase tracking-normal text-muted">{entry.data.status}</span>
+      <h1 class="mt-2 text-3xl font-semibold leading-tight text-ink sm:text-4xl">{entry.data.title}</h1>
+      <p class="mt-4 leading-7 text-muted">{entry.data.summary}</p>
+      <div class="mt-5 flex flex-wrap gap-2">
+        {entry.data.techStack.map((item) => (
+          <span class="border border-line bg-surface px-3 py-1 text-sm text-muted">{item}</span>
+        ))}
+      </div>
+    </header>
+    <div class="case-study mt-8">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .case-study :global(h2) {
+    margin-top: 2rem;
+    font-size: 1.35rem;
+    font-weight: 650;
+    color: #172033;
+  }
+
+  .case-study :global(h3) {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    font-weight: 650;
+    color: #172033;
+  }
+
+  .case-study :global(p) {
+    margin-top: 0.85rem;
+    line-height: 1.8;
+    color: #5f6b7a;
+  }
+
+  .case-study :global(ul) {
+    margin-top: 0.85rem;
+    padding-left: 1.25rem;
+    list-style: disc;
+    color: #5f6b7a;
+  }
+
+  .case-study :global(li) {
+    margin-top: 0.45rem;
+    line-height: 1.7;
+  }
+</style>

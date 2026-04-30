@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { profile } from "../data/profile";
+---
+
+<BaseLayout title="About | Data Engineer Portfolio">
+  <section class="border-b border-line bg-surface">
+    <div class="mx-auto max-w-6xl px-5 py-12 lg:px-8">
+      <p class="text-sm font-semibold uppercase tracking-normal text-accent">About</p>
+      <h1 class="mt-2 text-3xl font-semibold text-ink sm:text-4xl">Focused on reliable, readable data systems</h1>
+      <p class="mt-4 max-w-3xl leading-7 text-muted">{profile.about}</p>
+    </div>
+  </section>
+
+  <section class="mx-auto grid max-w-6xl gap-8 px-5 py-12 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
+    <aside class="border border-line bg-white p-6">
+      <h2 class="text-lg font-semibold text-ink">Profile</h2>
+      <dl class="mt-5 space-y-4 text-sm">
+        <div>
+          <dt class="font-semibold text-ink">Name</dt>
+          <dd class="mt-1 text-muted">{profile.name}</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-ink">Target role</dt>
+          <dd class="mt-1 text-muted">{profile.role}</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-ink">Location</dt>
+          <dd class="mt-1 text-muted">{profile.location}</dd>
+        </div>
+      </dl>
+    </aside>
+
+    <div class="space-y-8">
+      <section>
+        <h2 class="text-2xl font-semibold text-ink">How I present engineering work</h2>
+        <p class="mt-3 leading-7 text-muted">
+          I describe projects through the data flow: sources, ingestion, staging, transformations, models, checks, and outputs.
+          This keeps the portfolio focused on engineering decisions instead of vague tool lists.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold text-ink">Resume highlights</h2>
+        <ul class="mt-4 space-y-3">
+          {profile.resumeHighlights.map((highlight) => (
+            <li class="border-l-2 border-accent pl-4 leading-7 text-muted">{highlight}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold text-ink">Skill groups</h2>
+        <div class="mt-4 grid gap-4 md:grid-cols-2">
+          {profile.skills.map((group) => (
+            <div class="border border-line bg-white p-4">
+              <h3 class="font-semibold text-ink">{group.category}</h3>
+              <p class="mt-2 text-sm leading-6 text-muted">{group.items.join(", ")}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  </section>
+</BaseLayout>
