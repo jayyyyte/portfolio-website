@@ -5,6 +5,7 @@ export const profile = {
   email: "tlinh030805@gmail.com",
   github: "https://github.com/jayyyyte",
   linkedin: "https://www.linkedin.com/in/chu-linh-862279221/",
+  image: "/images/profile_image.jpg",
   hero: {
     headline: "Aspiring Data Engineer building reliable pipelines and analytics-ready data models.",
     subheadline:
