@@ -7,7 +7,6 @@ import { projects } from "../data/projects";
   <section class="border-b border-line bg-surface">
     <div class="mx-auto max-w-6xl px-5 py-12 lg:px-8">
       <p class="text-sm font-semibold uppercase tracking-normal text-accent">Projects</p>
-      <h1 class="mt-2 text-3xl font-semibold text-ink sm:text-4xl">Data engineering project portfolio</h1>
       <p class="mt-4 max-w-3xl leading-7 text-muted">
         Each project is structured around the problem, data sources, pipeline design, data model, quality checks, and outcome.
         Draft content is marked until real project repositories and measurements are added.
@@ -25,11 +24,18 @@ import { projects } from "../data/projects";
               <h2 class="mt-2 text-2xl font-semibold text-ink">{project.name}</h2>
               <p class="mt-3 max-w-3xl leading-7 text-muted">{project.summary}</p>
             </div>
-            {project.caseStudy && (
-              <a class="shrink-0 border border-accent px-4 py-2 text-sm font-semibold text-accent hover:bg-accent hover:text-white" href={project.caseStudy}>
-                Case Study
-              </a>
-            )}
+            <div class="flex shrink-0 flex-wrap gap-3">
+              {project.github && (
+                <a class="border border-line bg-white px-4 py-2 text-sm font-semibold text-ink hover:border-accent hover:text-accent" href={project.github}>
+                  GitHub Repo
+                </a>
+              )}
+              {project.caseStudy && (
+                <a class="border border-accent px-4 py-2 text-sm font-semibold text-accent hover:bg-accent hover:text-white" href={project.caseStudy}>
+                  Case Study
+                </a>
+              )}
+            </div>
           </div>
 
           <div class="mt-6 grid gap-5 lg:grid-cols-3">
@@ -65,6 +71,15 @@ import { projects } from "../data/projects";
               <p class="mt-2 text-sm leading-6 text-muted">{project.dataModel.join(", ")}</p>
             </div>
           </div>
+
+          <p class="mt-6 border-t border-line pt-5 text-sm leading-6 text-muted">
+            <span class="font-semibold text-ink">Deployment link:</span>{" "}
+            {project.deployment ? (
+              <a class="break-words text-accent hover:underline" href={project.deployment}>{project.deployment}</a>
+            ) : (
+              <span>Not available yet</span>
+            )}
+          </p>
         </article>
       ))}
     </div>

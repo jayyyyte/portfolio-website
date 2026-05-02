@@ -1,7 +1,7 @@
 export type Project = {
   name: string;
   slug: string;
-  status: "Draft content" | "Ready";
+  status: "Draft content" | "Ready" | "In progress";
   summary: string;
   problem: string;
   dataSources: string[];
@@ -11,16 +11,17 @@ export type Project = {
   dataQuality: string[];
   outcome: string;
   github?: string;
+  deployment?: string;
   caseStudy?: string;
 };
 
 export const projects: Project[] = [
   {
-    name: "Batch Sales Analytics Pipeline",
-    slug: "batch-sales-analytics-pipeline",
-    status: "Draft content",
+    name: "Ecommerce Market Batch ETL Pipeline",
+    slug: "ecommerce-market-batch-etl-pipeline",
+    status: "Ready",
     summary:
-      "A draft portfolio project for a batch ETL pipeline that ingests transaction data, validates schemas, and produces daily revenue metrics.",
+      "A batch ETL pipeline project that ingests transaction data, validates schemas, and produces daily revenue metrics.",
     problem:
       "Raw sales files need to be converted into clean, analytics-ready tables that support revenue reporting and trend analysis.",
     dataSources: ["CSV transaction exports", "Product reference data", "Customer reference data"],
@@ -35,13 +36,14 @@ export const projects: Project[] = [
     dataQuality: ["Not-null checks", "Duplicate order detection", "Referential integrity checks", "Daily row-count checks"],
     outcome:
       "Produces a documented dimensional model and a daily revenue mart that can be used for dashboards or ad hoc SQL analysis.",
-    github: "",
+    github: "https://github.com/jayyyyte/ecommerce-market-batch-etl-pipeline",
+    deployment: "",
     caseStudy: "/case-studies/batch-sales-analytics-pipeline/",
   },
   {
     name: "dbt Analytics Warehouse",
     slug: "dbt-analytics-warehouse",
-    status: "Draft content",
+    status: "In progress",
     summary:
       "A draft analytics engineering project that models raw event and account data into tested warehouse layers.",
     problem:
@@ -58,7 +60,8 @@ export const projects: Project[] = [
     dataQuality: ["Unique key tests", "Accepted values tests", "Relationship tests", "Freshness checks"],
     outcome:
       "Creates tested dbt models that make account activity and product usage easier to analyze consistently.",
-    github: "",
+    github: "https://github.com/jayyyyte/dbt-analytics-warehouse",
+    deployment: "",
     caseStudy: "/case-studies/dbt-analytics-warehouse/",
   },
   {
@@ -81,7 +84,8 @@ export const projects: Project[] = [
     dataQuality: ["Freshness checks", "Null-rate thresholds", "Schema validation", "Failed-check logging"],
     outcome:
       "Demonstrates an orchestrated workflow that separates ingestion, transformation, validation, and publishing steps.",
-    github: "",
+    github: "https://github.com/jayyyyte/airflow-data-quality-workflow",
+    deployment: "",
     caseStudy: "/case-studies/airflow-data-quality-workflow/",
   },
 ];

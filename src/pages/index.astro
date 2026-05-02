@@ -102,6 +102,11 @@ const caseStudies = await getCollection("case-studies");
             <p class="leading-7 text-muted">{project.summary}</p>
             <p class="mt-4 text-sm font-semibold text-ink">Stack</p>
             <p class="mt-1 text-sm leading-6 text-muted">{project.techStack.join(", ")}</p>
+            {project.github && (
+              <a class="mt-4 text-sm font-semibold text-accent hover:underline" href={project.github}>
+                GitHub repository
+              </a>
+            )}
             <a class="mt-5 text-sm font-semibold text-accent hover:underline" href={project.caseStudy}>Read case study</a>
           </article>
         ))}
