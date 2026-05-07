@@ -6,7 +6,7 @@ const caseStudies = defineCollection({
     title: z.string(),
     summary: z.string(),
     projectSlug: z.string(),
-    status: z.enum(["Draft content", "Ready"]),
+    status: z.enum(["Draft content", "Ready", "In progress"]),
     techStack: z.array(z.string()),
   }),
 });
