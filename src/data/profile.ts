@@ -1,6 +1,6 @@
 export const profile = {
   name: "Chu Tuan Linh",
-  role: "Aspiring Data Engineer",
+  role: "Data Engineer",
   location: "Hanoi",
   email: "tlinh030805@gmail.com",
   github: "https://github.com/jayyyyte",

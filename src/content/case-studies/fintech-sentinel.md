@@ -1,6 +1,6 @@
 ---
 title: "Fintech Sentinel"
-summary: "In-progress case study for a real-time transaction monitoring and fraud detection lakehouse using CDC, Kafka, Spark, Iceberg, dbt, Airflow, and Great Expectations."
+summary: "Case study for a real-time transaction monitoring and fraud detection lakehouse using CDC, Kafka, Spark, Iceberg, dbt, Airflow, and Great Expectations."
 projectSlug: "fintech-sentinel"
 status: "In progress"
 techStack:
@@ -88,5 +88,5 @@ When complete, Fintech Sentinel will demonstrate a realistic data engineering sy
 
 ## Links
 
-- Repository: Not published yet
-- Deployment: Not available for this in-progress data platform
+- Repository: [https://github.com/jayyyyte/fintech-sentinel](https://github.com/jayyyyte/fintech-sentinel)
+- Deployment: Not available yet

@@ -2,7 +2,7 @@
 title: "Airflow Data Quality Workflow"
 summary: "Draft case study for an orchestrated workflow that separates extraction, transformation, validation, and publish steps."
 projectSlug: "airflow-data-quality-workflow"
-status: "Draft content"
+status: "Draft"
 techStack:
   - Airflow
   - Python
