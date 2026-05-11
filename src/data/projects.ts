@@ -1,7 +1,7 @@
 export type Project = {
   name: string;
   slug: string;
-  status: "Draft" | "Ready" | "In progress";
+  status: "Draft" | "Ready" | "In progress" | "Planning";
   summary: string;
   problem: string;
   dataSources: string[];
@@ -65,9 +65,61 @@ export const projects: Project[] = [
     caseStudy: "/case-studies/ecommerce-market-batch-etl-pipeline/",
   },
   {
+    name: "Formula-1 Lakehouse Analytics",
+    slug: "f1-lakehouse-analytics",
+    status: "In progress",
+    summary:
+      "An ELT lakehouse analytics platform for Formula 1 historical results, race sessions, telemetry, strategy, and weather insights.",
+    problem:
+      "Formula 1 data is fragmented across historical APIs, session endpoints, and telemetry sources, making reliable race performance and strategy analysis difficult to reproduce.",
+    dataSources: [
+      "OpenF1 API",
+      "Jolpica-F1 API",
+      "FastF1 Python library",
+      "Weather and session endpoints",
+      "Raw Bronze lakehouse files",
+    ],
+    pipeline: [
+      "Use Airflow to ingest historical, session, lap, stint, weather, position, and selected telemetry data",
+      "Load raw API responses into a Bronze layer on MinIO/S3 with source and race/session partitions",
+      "Transform Bronze data into typed, deduplicated Silver Parquet datasets with PySpark",
+      "Build Gold analytical marts with dbt for race overview, driver performance, pit stops, tyre strategy, and weather impact",
+      "Serve Gold datasets through DuckDB and Metabase dashboards",
+    ],
+    techStack: ["Python", "Apache Airflow", "MinIO", "PySpark", "dbt", "DuckDB", "Metabase", "Parquet", "Docker"],
+    dataModel: [
+      "bronze.openf1",
+      "bronze.jolpica",
+      "silver.races",
+      "silver.drivers",
+      "silver.sessions",
+      "silver.laps",
+      "silver.weather",
+      "silver.stints",
+      "fact_lap",
+      "fact_car_telemetry",
+      "gold_driver_race_performance",
+      "gold_pit_stop_efficiency",
+      "gold_tyre_strategy_analysis",
+      "gold_weather_impact_analysis",
+      "gold_race_overview",
+    ],
+    dataQuality: [
+      "Raw Bronze preservation for auditability and reprocessing",
+      "Canonical identifier mapping across OpenF1 and Jolpica-F1",
+      "Silver schema checks for race, driver, lap, weather, telemetry, and result datasets",
+      "dbt tests for not-null keys, uniqueness, accepted values, and metric ranges",
+      "Airflow logs for source, parameters, output paths, record counts, and errors",
+    ],
+    outcome:
+      "In progress: building a local Docker-based lakehouse MVP that processes 3 to 5 selected race weekends end to end and presents at least four Metabase dashboard pages.",
+    deployment: "",
+    caseStudy: "/case-studies/f1-lakehouse-analytics/",
+  },
+  {
     name: "Fintech Sentinel",
     slug: "fintech-sentinel",
-    status: "In progress",
+    status: "Planning",
     summary:
       "A real-time transaction monitoring and fraud detection lakehouse for simulated digital banking data.",
     problem:
@@ -112,34 +164,10 @@ export const projects: Project[] = [
       "SLO checks for 5-second fraud latency and 15-minute Gold freshness",
     ],
     outcome:
-      "In progress: building a reproducible Docker Compose lakehouse that flags suspicious transactions, preserves raw CDC history, and exposes fraud monitoring datasets through Trino and Grafana.",
+      "Planning: designing a reproducible Docker Compose lakehouse that flags suspicious transactions, preserves raw CDC history, and exposes fraud monitoring datasets through Trino and Grafana.",
     github: "https://github.com/jayyyyte/fintech-sentinel",
     deployment: "",
     caseStudy: "/case-studies/fintech-sentinel/",
-  },
-  {
-    name: "Airflow Data Quality Workflow",
-    slug: "airflow-data-quality-workflow",
-    status: "Draft",
-    summary:
-      "A draft orchestration project that schedules pipeline tasks and records validation results for operational visibility.",
-    problem:
-      "Data pipelines need repeatable scheduling, failure handling, and visible quality checks before data is trusted downstream.",
-    dataSources: ["API extracts", "Warehouse tables", "Validation rule configuration"],
-    pipeline: [
-      "Extract data on a schedule",
-      "Run transformation jobs in dependency order",
-      "Execute validation tasks before publishing marts",
-      "Notify on failed checks or stale data",
-    ],
-    techStack: ["Airflow", "Python", "SQL", "Docker", "PostgreSQL"],
-    dataModel: ["raw_api_events", "stg_api_events", "dq_check_results", "mart_valid_events"],
-    dataQuality: ["Freshness checks", "Null-rate thresholds", "Schema validation", "Failed-check logging"],
-    outcome:
-      "Demonstrates an orchestrated workflow that separates ingestion, transformation, validation, and publishing steps.",
-    github: "https://github.com/jayyyyte/airflow-data-quality-workflow",
-    deployment: "",
-    caseStudy: "/case-studies/airflow-data-quality-workflow/",
   },
 ];
 

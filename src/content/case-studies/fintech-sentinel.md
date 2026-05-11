@@ -1,8 +1,8 @@
 ---
 title: "Fintech Sentinel"
-summary: "Case study for a real-time transaction monitoring and fraud detection lakehouse using CDC, Kafka, Spark, Iceberg, dbt, Airflow, and Great Expectations."
+summary: "Planning case study for a real-time transaction monitoring and fraud detection lakehouse using CDC, Kafka, Spark, Iceberg, dbt, Airflow, and Great Expectations."
 projectSlug: "fintech-sentinel"
-status: "In progress"
+status: "Planning"
 techStack:
   - PostgreSQL
   - Debezium
